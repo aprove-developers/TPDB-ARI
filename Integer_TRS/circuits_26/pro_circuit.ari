@@ -1,0 +1,73 @@
+; TRS with integer constraints to normalize circuits in 
+; the state-and-effect-free pro
+; @author Julie Cailler
+; @author Noé Delorme
+; @author Simon Perdrix
+; @author Sophie Tourret
+; if your system proves this TRS terminating or confluent,
+; let us know at "firstname . lastname @ loria . fr"!
+(format LCTRS :smtlib 2.6)
+(theory Ints)
+(sort trm)
+; generators
+(sort Sigma)
+; circuit-building blocks
+(fun seq (-> trm trm trm))
+(fun par (-> trm trm trm))
+(fun id (-> Int trm))
+(fun gen (-> Sigma Int Int trm))
+(fun layer (-> Int Int Sigma Int Int trm))
+; auxiliary functions
+(fun def (-> Int Int Int))
+(fun dom (-> trm Int))
+(fun cod (-> trm Int))
+
+(rule (layer k l g ni no) (par (id k) (par (gen g ni no) (id l))))
+
+(rule (dom (gen g ni no)) ni)
+(rule (dom (id n)) n)
+(rule (dom (seq u v)) (dom u))
+(rule (dom (par u v)) (+ (dom u) (dom v)))
+(rule (dom (layer k l g ni no)) (+ k (+ ni l)))
+; the last one is a shortcut and not necessary. Is it better to remove it?
+
+(rule (cod (gen g ni no)) no)
+(rule (cod (id n)) n)
+(rule (cod (seq u v)) (cod v))
+(rule (cod (par u v)) (+ (cod u) (cod v)))
+(rule (cod (layer k l g ni no)) (+ k (+ no l)))
+; same comment
+
+(rule (def t) (- (dom t) (cod t)))
+
+; R1
+(rule (seq (seq t u) v) (seq t (seq u v)))
+; R2
+(rule (par (par t u) v) (par t (par u v)))
+; R3
+(rule (seq (id n) t) t)
+; R4
+(rule (seq t (id n)) t)
+; R5
+(rule (par (id n) (id m)) (id (+ n m)))
+; R6
+(rule (par (id n) (par (id m) t)) (par (id (+ n m)) t))
+; R7 for all valid cases 
+; (split to avoid the condition with an existential quantifier)
+(rule (par (gen g ni no) (gen h mi mo)) (seq (par (gen g ni no) (id (dom (gen h mi mo)))) (par (id (cod (gen g ni no))) (gen h mi mo))))
+(rule (par (gen g ni no) (par u v)) (seq (par (gen g ni no) (id (dom (par u v)))) (par (id (cod (gen g ni no))) (par u v))))
+(rule (par (gen g ni no) (seq u v)) (seq (par (gen g ni no) (id (dom (seq u v)))) (par (id (cod (gen g ni no))) (seq u v))))
+(rule (par (par s t) (gen h mi mo)) (seq (par (par s t) (id (dom (gen h mi mo)))) (par (id (cod (par s t))) (gen h mi mo))))
+(rule (par (par s t) (par u v)) (seq (par (par s t) (id (dom (par u v)))) (par (id (cod (par s t))) (par u v))))
+(rule (par (par s t) (seq u v)) (seq (par (par s t) (id (dom (seq u v)))) (par (id (cod (par s t))) (seq u v))))
+(rule (par (seq s t) (gen h mi mo)) (seq (par (seq s t) (id (dom (gen h mi mo)))) (par (id (cod (seq s t))) (gen h mi mo))))
+(rule (par (seq s t) (par u v)) (seq (par (seq s t) (id (dom (par u v)))) (par (id (cod (seq s t))) (par u v))))
+(rule (par (seq s t) (seq u v)) (seq (par (seq s t) (id (dom (seq u v)))) (par (id (cod (seq s t))) (seq u v))))
+; R8
+(rule (par (id n) (seq u v)) (seq (par (id n) u) (par (id n) v)))
+; R9
+(rule (par (seq u v) (id n)) (seq (par u (id n)) (par v (id n))))
+; R10
+(rule (seq (par (id k1) (par (gen g1 ni1 no1) (id l1))) (par (id k2) (par (gen g2 ni2 no2) (id l2)))) (seq (layer k2 (+ l2 (def (gen g1 ni1 no1))) g2 ni2 no2) (layer (- k1 (def (gen g2 ni2 no2))) l1 g1 ni1 no1)) :guard (>= k1 (+ k2 (dom (gen g2 ni2 no2)))) :var ((k1 Int) (k2 Int)))
+; R11
+(rule (seq (par (id k1) (par (gen g1 ni1 no1) (id l1))) (seq (par (id k2) (par (gen g2 ni2 no2) (id l2))) t)) (seq (layer k2 (+ l2 (def (gen g1 ni1 no1))) g2 ni2 no2) (seq (layer (- k1 (def (gen g2 ni2 no2))) l1 g1 ni1 no1) t)) :guard (>= k1 (+ k2 (dom (gen g2 ni2 no2)))) :var ((k1 Int) (k2 Int)))

@@ -1,0 +1,12 @@
+This folder contains TRSs with integer constraints in the LCTRS ARI format ( https://project-coco.uibk.ac.at/ARI/lctrs.php ).
+
+The TRSs in the files
+ - pro_circuit.ari
+ - perm_circuit.ari
+correspond to the TRSs described in figures 2 and 4 in the paper:
+
+"Towards Term-based Verification of Diagrammatic Equivalence" 
+by Julie Cailler , Noé Delorme , Simon Perdrix , Sophie Tourret, 
+included in the proceedings of IJCAR 2026 (not yet available at the time this README was created).
+
+The paper is available on arXiv at: https://arxiv.org/abs/2602.11035 .
