@@ -1,0 +1,13 @@
+; Examples used for the Evaluation of AProVE in the Paper
+; "Disproving (Positive) Almost-Sure Termination of
+; Probabilistic Term Rewriting via Random Walks"
+; Published in Proc. IJCAR'26
+
+; A simple non-terminating PTRS, where we can detect a loop walk.
+
+(format PTRS)
+
+(fun f 1)
+(fun g 1)
+
+(prule (g x) (((f (g x)) :prob 1) ((g (f x)) :prob 1)))

@@ -1,0 +1,14 @@
+; Examples used for the Evaluation of AProVE in the Paper
+; "Disproving (Positive) Almost-Sure Termination of
+; Probabilistic Term Rewriting via Random Walks"
+; Published in Proc. IJCAR'26
+
+; Example that requires counting pumping substitutions.
+; Needs a pumping substitution that considers multiple arguments but the same variable.
+
+(format PTRS)
+
+(fun f 1)
+(fun c 2)
+
+(prule (c (f y) (f x)) (((c y x) :prob 1) ((c (f (f y)) (f (f x))) :prob 2)))

@@ -1,0 +1,22 @@
+; Examples used for the Evaluation of AProVE in the Paper
+; "Disproving (Positive) Almost-Sure Termination of
+; Probabilistic Term Rewriting via Random Walks"
+; Published in Proc. IJCAR'26
+
+; Example that shows how to create bigger RSTs, where we can embed random walks.
+
+(format PTRS)
+
+(fun f1 1)
+(fun f2 1)
+(fun f3 1)
+(fun f4 1)
+(fun f5 1)
+(fun h 1)
+(fun s 1)
+
+(prule (f1 (s x)) (((f2 (s (s x))) :prob 3 ) ((f1 x) :prob 1 )))
+(prule (f2 x) (((h (f3 x)) :prob 1 )))
+(prule (f3 (s x)) (((h (f4 (s x))) :prob 1 )))
+(prule (f4 (s x)) (((f5 (s (s x))) :prob 3 ) ((f5 (s x)) :prob 1 )))
+(prule (f5 x) (((h (f1 x)) :prob 1 )))
