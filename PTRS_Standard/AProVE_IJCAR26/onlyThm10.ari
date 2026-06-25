@@ -1,0 +1,15 @@
+; Examples used for the Evaluation of AProVE in the Paper
+; "Disproving (Positive) Almost-Sure Termination of
+; Probabilistic Term Rewriting via Random Walks"
+; Published in Proc. IJCAR'26
+
+; A PTRS that can only be solved via Thm.10
+
+(format PTRS)
+
+(fun f 1)
+(fun g 2)
+(fun a 0)
+(fun b 0)
+
+(prule (f x) ((a :prob 1) (b :prob 1) ((f (g (f a) (f b))) :prob 1)))

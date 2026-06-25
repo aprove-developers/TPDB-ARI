@@ -1,0 +1,23 @@
+; Examples used for the Evaluation of AProVE in the Paper
+; "Disproving (Positive) Almost-Sure Termination of
+; Probabilistic Term Rewriting via Random Walks"
+; Published in Proc. IJCAR'26
+
+; Broken shuffle algorithm that has too many recursive calls.
+
+(format PTRS)
+
+(fun shuffle 1)
+(fun head 1)
+(fun tail 1)
+(fun cons 2)
+(fun app 2)
+(fun nil 0)
+
+(prule (shuffle xs) ((xs :prob 1 ) ((shuffle (app (shuffle (tail xs)) (cons (head xs) nil))) :prob 1)))
+
+(prule (app nil ys) ((ys :prob 1 )))
+(prule (app (cons x xs) ys) (((cons x (app xs ys)) :prob 1 )))
+
+(prule (head (cons x xs)) ((x :prob 1 )))
+(prule (tail (cons x xs)) ((xs :prob 1 )))
