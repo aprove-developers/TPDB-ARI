@@ -1,0 +1,8 @@
+; Simple RNT example.
+; Expected: WORST_CASE(Non-SAST,AST). Class: Right-Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun f 1) (fun g 0) (fun a 0) (fun b 0) (fun c 2)
+
+(prule (f x) ((g :prob 1) ((c (f a) (f b)) :prob 1)))

@@ -1,0 +1,15 @@
+; Peer-to-peer gossip with three roles, parameterized by topic. 
+; A seeder goes stale or keeps gossiping, infecting a relay while persisting; 
+; a relay goes stale or forwards to a sink; 
+; a sink goes stale or rebroadcasts, re-seeding and re-creating a relay.
+; The variable rules seeder(x)/relay(y)/sink(z) abbreviate the ground instances on topic.
+; Expected: WORST_CASE(Non-AST,?). Class: Right-Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun seeder 1) (fun relay 1) (fun sink 1) (fun topic 0) (fun stale 0)
+(fun infect 2) (fun forward 1) (fun rebroadcast 2)
+
+(prule (seeder x) ((stale :prob 1) ((infect (relay topic) (seeder topic)) :prob 2)))
+(prule (relay y) ((stale :prob 1) ((forward (sink topic)) :prob 2)))
+(prule (sink z) ((stale :prob 1) ((rebroadcast (seeder topic) (relay topic)) :prob 2)))

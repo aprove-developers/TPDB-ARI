@@ -1,0 +1,12 @@
+; A two-function recursive process. 
+; f reads an argument and either yields g or forks f on fixed inputs a and b; 
+; g either stops or forks two f's on input a. 
+; The variable rules f(x), g(y) abbreviate the ground instances f(a), f(b), g(a).
+; Expected: WORST_CASE(Non-AST,?). Class: Right-Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun f 1) (fun g 1) (fun a 0) (fun b 0) (fun stop 0) (fun c 2) (fun d 2)
+
+(prule (f x) (((g a) :prob 1) ((c (f a) (f b)) :prob 1)))
+(prule (g y) ((stop :prob 2) ((d (f a) (f a)) :prob 1)))

@@ -1,0 +1,11 @@
+; Two co-circulating epidemic strains: 
+; strain A recovers, spreads to two A-cases, or mutates into strain B; 
+; strain B recovers or spreads to two B-cases. Cross-type branching epidemic.
+; Expected: WORST_CASE(Non-SAST,AST). Class: Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun strainA 0) (fun strainB 0) (fun recovered 0) (fun spread2 2) (fun mutate 1)
+
+(prule strainA ((recovered :prob 2) ((spread2 strainA strainA) :prob 1) ((mutate strainB) :prob 1)))
+(prule strainB ((recovered :prob 1) ((spread2 strainB strainB) :prob 1)))

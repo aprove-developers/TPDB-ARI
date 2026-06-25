@@ -1,0 +1,10 @@
+; A worker process parameterized by a scheduling mode either idles,
+; spawns an I/O and a CPU worker, or is reassigned to the network mode. 
+; One variable rule worker(x) covers worker(io), worker(cpu), worker(net).
+; Expected: WORST_CASE(?,SAST). Class: Right-Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun worker 1) (fun io 0) (fun cpu 0) (fun net 0) (fun idle 0) (fun spawn 2) (fun reassign 1)
+
+(prule (worker x) ((idle :prob 2) ((spawn (worker io) (worker cpu)) :prob 1) ((reassign (worker net)) :prob 1)))
