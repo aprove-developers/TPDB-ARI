@@ -1,0 +1,14 @@
+; Stochastic grammar for arithmetic expressions:
+; E -> T | E + T
+; T -> F | T * F
+; F -> num | ( E )
+; Expected: WORST_CASE(?,SAST). Class: Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun E 0) (fun T 0) (fun F 0) (fun num 0) (fun useT 1) (fun useF 1)
+(fun plus 2) (fun times 2) (fun paren 1)
+
+(prule E (((useT T) :prob 2) ((plus E T) :prob 1)))
+(prule T (((useF F) :prob 2) ((times T F) :prob 1)))
+(prule F ((num :prob 2) ((paren E) :prob 1)))

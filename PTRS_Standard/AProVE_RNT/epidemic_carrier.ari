@@ -1,0 +1,14 @@
+; Epidemic with a carrier state: 
+; an infected host recovers or exposes a new host while remaining infectious; 
+; an exposed host recovers or incubates into a carrier; 
+; a carrier recovers or sheds, exposing a host and turns into an infected host.
+; Expected: WORST_CASE(Non-AST,?). Class: Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun infected 0) (fun exposed 0) (fun carrier 0) (fun recovered 0)
+(fun transmit 2) (fun incubate 1) (fun shed 2)
+
+(prule infected ((recovered :prob 1) ((transmit exposed infected) :prob 2)))
+(prule exposed ((recovered :prob 1) ((incubate carrier) :prob 2)))
+(prule carrier ((recovered :prob 1) ((shed exposed infected) :prob 2)))

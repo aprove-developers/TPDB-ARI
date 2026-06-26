@@ -1,0 +1,13 @@
+; Fork/join parallel computation: 
+; a job either returns or forks two tasks; 
+; a task returns, recurses as a subtask, or itself forks; 
+; a subtask returns or becomes a task.
+; Expected: WORST_CASE(?,SAST). Class: Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun job 0) (fun task 0) (fun subtask 0) (fun result 0) (fun fork 2)
+
+(prule job ((result :prob 1) ((fork task task) :prob 1)))
+(prule task ((result :prob 3) (subtask :prob 2) ((fork task task) :prob 1)))
+(prule subtask ((result :prob 2) (task :prob 1)))

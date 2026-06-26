@@ -1,0 +1,10 @@
+; Simple GNT example: f(a), f(b), g are ground left-hand sides; g is a defined symbol.
+; Expected: WORST_CASE(Non-SAST,AST). Class: Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun f 1) (fun g 0) (fun a 0) (fun b 0) (fun c 2)
+
+(prule (f a) (((c g (c (f a) (f b))) :prob 1) ((c a b) :prob 2)))
+(prule (f b) (((c g b) :prob 1)))
+(prule g (((f a) :prob 1)))

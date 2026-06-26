@@ -1,0 +1,13 @@
+; A probabilistic rewriter on rows of three elements over a two-symbol alphabet {lo, hi}.
+; scan(mode, cell, pos) holds a triple; cell is a wildcard and plays no role in rule selection.
+; When mode is lo the row always resets to a lo-anchored triple;
+; when mode is hi the outcome depends on pos: hi and lo branch differently.
+; Expected: WORST_CASE(Non-AST,?). Class: Right-Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun scan 3) (fun lo 0) (fun hi 0)
+
+(prule (scan lo y x) (((scan lo lo hi) :prob 1) ((scan hi hi hi) :prob 3)))
+(prule (scan hi y hi) (((scan hi hi lo) :prob 1) ((scan hi lo hi) :prob 1) ((scan lo lo hi) :prob 3)))
+(prule (scan hi y lo) (((scan lo lo hi) :prob 1) ((scan lo lo lo) :prob 2)))

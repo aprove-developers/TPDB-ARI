@@ -1,0 +1,12 @@
+; Stochastic context-free grammar for RNA secondary structure (Knudsen-Hein style).
+; Non-terminals S,L,F; terminals s,d combined in parallel via com_k constructors.
+; Probabilities such that the system is Non-AST.
+; Expected: WORST_CASE(Non-AST,?). Class: Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun S 0) (fun L 0) (fun F 0) (fun s 0) (fun d 0) (fun com1 1) (fun com2 2) (fun com3 3)
+
+(prule S (((com1 L) :prob 1) ((com2 L S) :prob 3)))
+(prule L (((com1 s) :prob 1) ((com3 d F d) :prob 3)))
+(prule F (((com3 d F d) :prob 1) ((com2 L S) :prob 3)))

@@ -1,0 +1,9 @@
+; Galton-Watson surname survival: a man has 0 sons (1/4), 1 son (1/2), or 2 sons (1/4).
+; Almost-Sure Termination -> the family line dies out almost-surely.
+; Expected: WORST_CASE(Non-SAST,AST). Class: Ground, Non-overlapping, Tail-recursive.
+
+(format PTRS)
+
+(fun person 0) (fun extinct 0) (fun one 1) (fun two 2)
+
+(prule person ((extinct :prob 1) ((one person) :prob 2) ((two person person) :prob 1)))
