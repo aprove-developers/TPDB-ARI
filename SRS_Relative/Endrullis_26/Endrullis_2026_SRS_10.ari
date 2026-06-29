@@ -1,0 +1,9 @@
+; Generator with doubling depositor
+(format SRS)
+(fun A 1)
+(fun B 1)
+(fun R 1)
+(fun a 1)
+(rule (R B) (a B))
+(rule (A) (A a R) :cost 0)
+(rule (R a) (a a R) :cost 0)

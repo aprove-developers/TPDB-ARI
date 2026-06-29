@@ -1,0 +1,11 @@
+; Binary M(left,right) with up/down walkers
+(format TRS)
+(fun M 2)
+(fun U 1)
+(fun D 1)
+(fun s 1)
+(fun e 0)
+(rule (M (U x) (U y)) (M (D (s x)) (D (s y))))
+(rule (D (s x)) (s (D x)) :cost 0)
+(rule (D e) (U e) :cost 0)
+(rule (s (U x)) (U (s x)) :cost 0)

@@ -1,0 +1,11 @@
+; Generator with depositor, list-encoded
+(format TRS)
+(fun cons 2)
+(fun nil 0)
+(fun A 0)
+(fun a 0)
+(fun R 0)
+(fun B 0)
+(rule (cons R (cons B x)) (cons a (cons B x)))
+(rule (cons A x) (cons A (cons a (cons R x))) :cost 0)
+(rule (cons R (cons a x)) (cons a (cons a (cons R x))) :cost 0)

@@ -1,0 +1,7 @@
+; Two-counter register machine (transfer + doubling swap)
+(format TRS)
+(fun f 2)
+(fun s 1)
+(fun o 0)
+(rule (f o y) (f (s y) o))
+(rule (f (s x) y) (f x (s (s y))) :cost 0)

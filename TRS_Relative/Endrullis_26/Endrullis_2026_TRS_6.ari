@@ -1,0 +1,12 @@
+; Single token ferrying between f's two arguments
+(format TRS)
+(fun f 2)
+(fun U 1)
+(fun D 1)
+(fun s 1)
+(fun e 0)
+(rule (f (U x) y) (f x (D (s y))))
+(rule (f x (U y)) (f (D (s x)) y) :cost 0)
+(rule (D (s x)) (s (D x)) :cost 0)
+(rule (D e) (U e) :cost 0)
+(rule (s (U x)) (U (s x)) :cost 0)

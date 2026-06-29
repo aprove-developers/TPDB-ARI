@@ -1,0 +1,13 @@
+; Ternary T(x,y,z) descent-ferry
+(format TRS)
+(fun T 3)
+(fun U 1)
+(fun D 1)
+(fun s 1)
+(fun e 0)
+(rule (T (U x) y z) (T x (D (s y)) z))
+(rule (T x (U y) z) (T x y (D (s z))) :cost 0)
+(rule (T x y (U z)) (T (D (s x)) y z) :cost 0)
+(rule (D (s x)) (s (D x)) :cost 0)
+(rule (D e) (U e) :cost 0)
+(rule (s (U x)) (U (s x)) :cost 0)

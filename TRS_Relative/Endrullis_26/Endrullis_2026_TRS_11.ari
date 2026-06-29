@@ -1,0 +1,11 @@
+; Post tag system on a two-stack functional queue
+(format TRS)
+(fun q 2)
+(fun flip 2)
+(fun cons 2)
+(fun nil 0)
+(fun a 0)
+(rule (q nil y) (flip nil y))
+(rule (q (cons a x) y) (q x (cons a (cons a y))) :cost 0)
+(rule (flip f (cons a y)) (flip (cons a f) y) :cost 0)
+(rule (flip f nil) (q f nil) :cost 0)

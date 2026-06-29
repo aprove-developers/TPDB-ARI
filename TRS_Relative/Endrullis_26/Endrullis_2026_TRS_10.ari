@@ -1,0 +1,8 @@
+; Three-counter transfer machine
+(format TRS)
+(fun T 3)
+(fun s 1)
+(fun o 0)
+(rule (T o o (s z)) (T (s (s z)) o o))
+(rule (T (s x) y z) (T x (s y) z) :cost 0)
+(rule (T x (s y) z) (T x y (s z)) :cost 0)

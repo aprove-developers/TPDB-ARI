@@ -1,0 +1,11 @@
+; Single bouncing marker, linear trail
+(format SRS)
+(fun A 1)
+(fun B 1)
+(fun L 1)
+(fun R 1)
+(fun a 1)
+(rule (A L) (A a R))
+(rule (R B) (L B) :cost 0)
+(rule (R a) (a R) :cost 0)
+(rule (a L) (L a) :cost 0)

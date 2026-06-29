@@ -1,0 +1,7 @@
+; Two-stack linear counter (pour + swap)
+(format TRS)
+(fun f 2)
+(fun s 1)
+(fun o 0)
+(rule (f o y) (f (s (s y)) o))
+(rule (f (s x) y) (f x (s y)) :cost 0)
