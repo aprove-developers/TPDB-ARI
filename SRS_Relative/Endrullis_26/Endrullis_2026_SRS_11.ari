@@ -1,5 +1,5 @@
 ; Binary counter
-(format SRS)
+(format TRS)
 (fun W 1)
 (fun E 1)
 (fun I 1)

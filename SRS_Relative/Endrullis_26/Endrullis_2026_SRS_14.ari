@@ -1,5 +1,5 @@
 ; Lindenmayer / Fibonacci L-system (A -> AB, B -> A)
-(format SRS)
+(format TRS)
 (fun H 1)
 (fun E 1)
 (fun G 1)

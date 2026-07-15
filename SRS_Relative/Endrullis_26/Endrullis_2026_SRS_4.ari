@@ -1,5 +1,5 @@
 ; Off-cycle strict rule c -> d driven by a weak marker cycle
-(format SRS)
+(format TRS)
 (fun c 1)
 (fun d 1)
 (fun A 1)

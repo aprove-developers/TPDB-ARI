@@ -1,5 +1,5 @@
 ; Marker system: left wall A consumes, right generator B (strict AL -> A)
-(format SRS)
+(format TRS)
 (fun A 1)
 (fun L 1)
 (fun B 1)

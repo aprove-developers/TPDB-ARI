@@ -1,5 +1,5 @@
 ; Marker cycle with auxiliary recoding (strict fed -> d)
-(format SRS)
+(format TRS)
 (fun f 1)
 (fun e 1)
 (fun d 1)

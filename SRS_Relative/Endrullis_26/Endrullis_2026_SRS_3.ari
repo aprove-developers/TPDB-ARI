@@ -1,5 +1,5 @@
 ; Bouncing marker over a doubling a-field (strict AL -> AaR)
-(format SRS)
+(format TRS)
 (fun A 1)
 (fun L 1)
 (fun a 1)

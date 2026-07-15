@@ -1,5 +1,5 @@
 ; Central engine M emitting on both sides (strict RML -> LaMaR)
-(format SRS)
+(format TRS)
 (fun R 1)
 (fun M 1)
 (fun L 1)

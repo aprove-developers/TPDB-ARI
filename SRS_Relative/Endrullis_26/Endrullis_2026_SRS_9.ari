@@ -1,5 +1,5 @@
 ; Colour-flipping sweeper (a <-> b)
-(format SRS)
+(format TRS)
 (fun A 1)
 (fun B 1)
 (fun L 1)

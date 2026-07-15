@@ -1,5 +1,5 @@
 ; Rule 60 elementary cellular automaton (Sierpinski / Pascal mod 2)
-(format SRS)
+(format TRS)
 (fun H 1)
 (fun E 1)
 (fun a 1)

@@ -1,5 +1,5 @@
 ; Generator A with right-wall consumer (strict RB -> B)
-(format SRS)
+(format TRS)
 (fun R 1)
 (fun B 1)
 (fun A 1)

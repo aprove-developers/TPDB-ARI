@@ -1,5 +1,5 @@
 ; Abelian sandpile / 1D chip-firing (Bak-Tang-Wiesenfeld)
-(format SRS)
+(format TRS)
 (fun H 1)
 (fun E 1)
 (fun f 1)
