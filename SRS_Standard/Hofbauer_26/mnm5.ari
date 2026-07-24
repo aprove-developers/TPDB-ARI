@@ -1,0 +1,4 @@
+; @author Dieter Hofbauer
+; secret problem 2026
+(format TRS)
+(rule x1 x1)

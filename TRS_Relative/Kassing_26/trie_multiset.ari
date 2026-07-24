@@ -1,0 +1,21 @@
+; Inserting a multiset of bitstring keys into a binary trie. 
+; As the keys form a multiset, two adjacent keys may be swapped arbitrarily often (relative rule).
+
+(format TRS)
+
+(fun nil 0) (fun b0 1) (fun b1 1)
+(fun tnil 0) (fun tnode 3) (fun mark 0) (fun unmark 0)
+(fun lnil 0) (fun lcons 2) (fun insert 2) (fun build 2)
+
+(rule (insert nil tnil) (tnode mark tnil tnil))
+(rule (insert nil (tnode m t0 t1)) (tnode mark t0 t1))
+(rule (insert (b0 k) tnil) (tnode unmark (insert k tnil) tnil))
+(rule (insert (b0 k) (tnode m t0 t1)) (tnode m (insert k t0) t1))
+(rule (insert (b1 k) tnil) (tnode unmark tnil (insert k tnil)))
+(rule (insert (b1 k) (tnode m t0 t1)) (tnode m t0 (insert k t1)))
+
+(rule (build lnil t) t)
+(rule (build (lcons key keys) t) (build keys (insert key t)))
+
+; Relative:
+(rule (build (lcons k (lcons k2 keys)) t) (build (lcons k2 (lcons k keys)) t) :cost 0)

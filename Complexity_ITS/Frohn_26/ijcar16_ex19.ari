@@ -1,0 +1,10 @@
+; example 19 from the IJCAR 16 paper "Lower Runtime Bounds for Integer Programs"
+; its runtime is in Theta(n^{1/2})
+
+(format LCTRS)
+(theory Ints)
+(fun l0 (-> Int Int Int))
+(fun l2 (-> Int Int Int))
+(entrypoint l0)
+(rule (l0 x y) (l2 x y) :guard (= x (* y y)) :cost y)
+

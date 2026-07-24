@@ -1,0 +1,7 @@
+(format TRS)
+(fun J 0)
+(fun I 0)
+(fun a 2)
+(rule (a (a (a (a J x) y) z) w) (a (a x y) (a (a x w) z)))
+(rule (a I x) x)
+

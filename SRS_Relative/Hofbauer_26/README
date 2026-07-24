@@ -1,0 +1,10 @@
+The string rewrite system a a -> a b a is among the most
+popular folklore examples, yet it is missing from the TPDB.
+This directory contains a several variants of it for relative
+termination, together with a few edge cases (rules with empty
+left- or right-hand sides).
+
+Dieter Hofbauer, June 2026
+
+
+

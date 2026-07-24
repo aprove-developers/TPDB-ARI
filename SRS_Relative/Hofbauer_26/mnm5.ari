@@ -1,0 +1,5 @@
+; @author Dieter Hofbauer
+; secret problem 2026
+(format TRS)
+(fun a 1)
+(rule x1 (a x1) :cost 0)

@@ -1,0 +1,1 @@
+This benchmark is a small variation of problems found in TPDB/TRS_Standard/EEG_IJCAR_12.

@@ -1,0 +1,16 @@
+; Flattening a binary tree of lists into a single list. Sibling subtrees are unordered,
+; so the children of a fork may be swapped arbitrarily often (relative rule).
+
+(format TRS)
+
+(fun nil 0) (fun cons 2) (fun tip 1)
+(fun fork 2) (fun app 2) (fun flat 1)
+
+(rule (flat (tip xs)) xs)
+(rule (flat (fork l r)) (app (flat l) (flat r)))
+
+(rule (app nil y) y)
+(rule (app (cons n x) y) (cons n (app x y)))
+
+; Relative:
+(rule (flat (fork l r)) (flat (fork r l)) :cost 0)

@@ -1,0 +1,3 @@
+secret1 is a non-operational  terminating and non-terminating problem. It is interesting to see how tools for proving non-operational termination and non-termination deal with it.
+
+secret3 comes from a GTRS that is translated into a CTRS. It is interesting because we can see it is harder to prove this problem than its GTRS version.

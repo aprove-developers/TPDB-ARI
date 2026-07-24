@@ -1,0 +1,7 @@
+(format TRS)
+(fun a 2)
+(fun cons 0)
+(fun nil 0)
+(fun zip 0)
+(rule (a (a (a zip F) nil) nil) nil)
+(rule (a (a (a zip F) (a (a cons X) XS)) (a (a cons Y) YS)) (a (a cons (a (a F X) Y)) (a (a (a zip F) XS) YS)))

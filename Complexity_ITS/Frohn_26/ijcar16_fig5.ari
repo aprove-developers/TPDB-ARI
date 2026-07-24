@@ -1,0 +1,12 @@
+; example from figure 5 of the IJCAR 16 paper "Lower Runtime Bounds for Integer Programs"
+; obtained from fig4 via acceleration
+; its runtime is in Theta(n^4)
+
+(format LCTRS)
+(theory Ints)
+(fun l0 (-> Int Int Int Int Int))
+(fun l2 (-> Int Int Int Int Int))
+(entrypoint l0)
+(rule (l0 x y z u) (l2 0 (div (+ (* x x) x) 2) (div (+ (* x x) x) 2) u) :guard (> x 0) :cost (+ x 2))
+(rule (l2 x y z u) (l2 x y (- z tv) 0) :guard (< 0 tv z) :cost (+ (* tv z) (div (- tv (* tv tv)) 2) tv))
+

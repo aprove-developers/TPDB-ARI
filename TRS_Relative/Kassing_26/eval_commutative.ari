@@ -1,0 +1,21 @@
+; Evaluation of an arithmetic expression tree where + and * are commutative, so the operands of
+; eplus/etimes may be swapped arbitrarily often (relative rules).
+
+(format TRS)
+
+(fun |0| 0) (fun s 1) (fun enum 1) (fun eplus 2) (fun etimes 2)
+(fun eval 1) (fun add 2) (fun mul 2)
+
+(rule (eval (enum n)) n)
+(rule (eval (eplus a b)) (add (eval a) (eval b)))
+(rule (eval (etimes a b)) (mul (eval a) (eval b)))
+
+(rule (add |0| y) y)
+(rule (add (s x) y) (s (add x y)))
+
+(rule (mul |0| y) |0|)
+(rule (mul (s x) y) (add y (mul x y)))
+
+; Relative:
+(rule (eval (eplus a b)) (eval (eplus b a)) :cost 0)
+(rule (eval (etimes a b)) (eval (etimes b a)) :cost 0)
